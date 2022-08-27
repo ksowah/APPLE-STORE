@@ -1,7 +1,13 @@
-// export const fetchCategories = async () => {
-//     const {data} = await fetch(`${process.env.NEXT_PUBLIC_BASIC_URL}/api/getCategories`)
-//     console.log(data);
+export const fetchCategories = async () => {
+    const res = await fetch(`${process.env.NEXT_PUBLIC_BASIC_URL}/api/getCategories`)
     
-//     const categories  
-// }
+    const data = await res.json()
+
+    console.log(data)
+    
+    
+    const categories: Category[] = data.categories
+
+    return categories
+}
 
