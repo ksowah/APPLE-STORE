@@ -25,4 +25,16 @@
         @apply relative cursor-pointer text-lg font-medium before:absolute before:inset-x-0 before:-bottom-1.5 before:h-0.5 before:origin-left before:scale-x-0 before:transform
         before:rounded-bl before:bg-black before:transition-all before:duration-200 hover:before:scale-x-100    
     }
+
+    .borderGradient {
+        text-align: center;
+        padding-bottom: 5px;
+        background: linear-gradient(to right, #ec4899, #8b5cf6) left bottom
+          no-repeat;
+        background-size: 100% 2px;
+      }
+
+      .tabPanel {
+        @apply grid grid-cols-1 gap-8 sm:grid-cols-2 md:grid-cols-1 lg:grid-cols-2 xl:grid-cols-3;
+      }
 }
