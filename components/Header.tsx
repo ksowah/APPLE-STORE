@@ -5,8 +5,12 @@ import {
     ShoppingBagIcon,
     UserIcon
 } from '@heroicons/react/24/outline'
+import { useRecoilValue } from "recoil"
+import { cartState } from "../atoms/cartAtom"
 
 const Header = () => {
+
+    const totalCartItems = useRecoilValue(cartState).length
 
     const session = false
 
@@ -32,10 +36,12 @@ const Header = () => {
             
             <Link href={"/checkout"}>
                 <div className="relative cursor-pointer">
-                    <span className="absolute -right-1 -top-1 z-50 flex h-4 w-4 items-center
-                    justify-center rounded-full bg-gradient-to-r from-pink-500 to-violet-500 text-[10px] text-white">
-                        5
-                    </span>
+                    {totalCartItems > 0 && (
+                        <span className="absolute -right-1 -top-1 z-50 flex h-4 w-4 items-center
+                        justify-center rounded-full bg-gradient-to-r from-pink-500 to-violet-500 text-[10px] text-white">
+                            {totalCartItems}
+                        </span>
+                    )}
                 <ShoppingBagIcon className="headerIcon" />
                 </div>
             </Link>
