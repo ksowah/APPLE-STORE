@@ -15,6 +15,6 @@
     "jsx": "preserve",
     "incremental": true
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "sanity.js"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "sanity.js", "pages/api/auth/[...nextauth].js"],
   "exclude": ["node_modules"]
 }
