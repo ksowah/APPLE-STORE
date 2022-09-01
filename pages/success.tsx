@@ -9,6 +9,7 @@ import Currency from "react-currency-formatter";
 import { useMediaQuery } from 'react-responsive'
 import { GetServerSideProps } from 'next'
 import { fetchLineItems } from '../utils/fetchLineItems'
+import { useSession } from 'next-auth/react'
 
 
 interface Props {
@@ -21,6 +22,8 @@ const Success = ({products}: Props) => {
     console.log(products);
     
     const router = useRouter()
+
+    const { data: session } = useSession()
 
     const {session_id} = router.query
 
@@ -79,7 +82,7 @@ const Success = ({products}: Props) => {
                     <p className='text-sm text-gray-600'>Order #{session_id?.slice(-5)}</p>
                     <h4 className='text-lg'>
                         Thank you{" "}
-                        {/* {session ? session_id.user?.name?.split("")[0] : "Guest"} */}
+                        {session ? session.user?.name : "Guest"}
                     </h4>
                 </div>
             </div>
