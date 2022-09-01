@@ -7,12 +7,13 @@ import {
 } from '@heroicons/react/24/outline'
 import { useRecoilValue } from "recoil"
 import { cartState } from "../atoms/cartAtom"
+import { signIn, signOut, useSession } from "next-auth/react"
 
 const Header = () => {
 
-    const totalCartItems = useRecoilValue(cartState).length
+    const { data: session } = useSession()
 
-    const session = false
+    const totalCartItems = useRecoilValue(cartState).length
 
   return (
     <header className="sticky top-0 z-30 flex w-full items-center justify-between bg-[#e7ecee] p-4">
@@ -48,14 +49,17 @@ const Header = () => {
 
             {session ? (
                 <Image 
-                src="https://avatars.githubusercontent.com/u/80095257?v=4" 
-                alt=""
+                onClick={() => signOut()}
+                src={
+                    session.user?.image ||
+                    "https://avatars.githubusercontent.com/u/80095257?v=4" }
+                alt="user"
                 className="cursor-pointer rounded-full"
                 width={34}
                 height={34}
                 />
             ) : (
-                <UserIcon className="headerIcon"/>
+                <UserIcon onClick={() => signIn()} className="headerIcon"/>
             )}
         </div>
     </header>
