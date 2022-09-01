@@ -5,14 +5,12 @@ import { useEffect, useState } from "react";
 import Currency from "react-currency-formatter";
 import Stripe from "stripe";
 import Button from "../components/Button";
-// import CheckoutProduct from "../components/CheckoutProduct";
-// import CheckoutProduct from "../components/CheckoutProduct";
-// import { fetchPostJSON } from "../utils/api-helpers";
-// import getStripe from "../utils/get-stripejs";
 import { ChevronDownIcon } from '@heroicons/react/24/outline';
 import { useRecoilValue } from 'recoil';
 import { cartState } from '../atoms/cartAtom';
 import CheckoutProducts from '../components/CheckoutProducts';
+import { fetchPostJSON } from '../utils/api-helper';
+import getStripe from '../utils/get-stripejs';
 
 const Checkout = () => {
 
@@ -41,11 +39,38 @@ const Checkout = () => {
         setGetTotal(getBasketTotal())
     }, [cartItems])
     
-    const createCheckoutSession = () => {
-        setLoading(true)
-
-        // const checkoutSession
-    }
+    const createCheckoutSession = async () => {
+        setLoading(true);
+    
+        const checkoutSession: Stripe.Checkout.Session = await fetchPostJSON(
+          "/api/checkout_session",
+          {
+            items: cartItems,
+          }
+        );
+   
+        // Internal Server Error
+        if ((checkoutSession as any).statusCode === 500) {
+          console.error((checkoutSession as any).message);
+          return;
+        }
+    
+        // Redirect to checkout
+        const stripe = await getStripe();
+        const { error } = await stripe!.redirectToCheckout({
+          // Make the id field from the Checkout Session creation API response
+          // available to this file, so you can provide it as parameter here
+          // instead of the {{CHECKOUT_SESSION_ID}} placeholder.
+          sessionId: checkoutSession.id,
+        });
+    
+        // If `redirectToCheckout` fails due to a browser or network
+        // error, display the localized error message to your customer
+        // using `error.message`.
+        console.warn(error.message);
+    
+        setLoading(false);
+      };
 
 
   return (

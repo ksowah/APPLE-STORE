@@ -15,7 +15,7 @@ const Product = ({product}: Props) => {
     const [cart, setCart] = useRecoilState(cartState)
 
     const addItemToCart = () => {
-          setCart([...cart].concat(product))
+          setCart([...cart, product])
           toast.success(`${product.title} added to cart `)
     }
 

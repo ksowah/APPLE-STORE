@@ -14,7 +14,7 @@ interface Category {
 interface Image {
     _key: string
     _type: "image"
-    assets: {
+    asset: {
         url: string
     }
 }
@@ -37,4 +37,19 @@ interface Product {
     image: Image[]
     price: number
     title: string
+}
+
+interface StripeProduct {
+    id: string
+    amount_discount: number
+    amount_subtotal: number
+    amount_tax: number
+    amount_total: number
+    currency: string
+    description: string
+    object: string
+    quantity: number
+    price: {
+        unit_amount: number
+    }
 }
