@@ -11,11 +11,16 @@ const options = {
       clientSecret: process.env.GOOGLE_CLIENT_SECRET
     }),
   ],
+  pages: {
+    signIn: "/"
+  },
   session: {
     strategy: 'jwt'
   },
+
   secret: process.env.NEXTAUTH_SECRET,
   adapter: SanityAdapter(sanityClient)
+
 
   //  pages: {
   //   signIn: "/",
