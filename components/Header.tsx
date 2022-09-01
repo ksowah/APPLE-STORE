@@ -18,7 +18,7 @@ const Header = () => {
     <header className="sticky top-0 z-30 flex w-full items-center justify-between bg-[#e7ecee] p-4">
         <div className="flex items-center justify-center md:w-[20%]">
             <Link href={"/"} >
-                <div className="relative h-10 w-10 cursor-pointer opacity-75 transition hover:opacity-100">
+                <div className="relative h-7 w-7 cursor-pointer opacity-75 transition hover:opacity-100">
                     <Image src={"https://rb.gy/vsvv2o"} layout="fill" objectFit="contain" />
                 </div>
             </Link>

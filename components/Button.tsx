@@ -5,7 +5,7 @@ interface Props {
     width?: string,
     loading?: boolean,
     padding?: string,
-    noIcon?: boolean
+    noIcon?: boolean,
 }
 
 const Button = ({title, onClick, width, loading, padding, noIcon}: Props) => {
