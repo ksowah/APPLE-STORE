@@ -2,6 +2,6 @@
 module.exports = {
   reactStrictMode: true,
   images: {
-    domains: ["rb.gy", "avatars.githubusercontent.com", "cdn.sanity.io"]
+    domains: ["rb.gy", "avatars.githubusercontent.com", "cdn.sanity.io", "lh3.googleusercontent.com"]
   }
 }
